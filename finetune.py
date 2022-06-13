@@ -4,8 +4,9 @@ import openai
 def gpt3_answer(item, fine_tuned_model, is_log=False):
     
 
-  result = openai.Completion.create(model=fine_tuned_model, 
-                                    prompt=str(item), temperature = 0)['choices'][0]['text'] 
+  result = openai.Completion.create(model = fine_tuned_model, 
+                                    max_tokens = 40,
+                                    prompt=str(item), temperature = 0.4)['choices'][0]['text'] 
     
   if is_log: print('- ', item, ': ', result)
     
@@ -30,5 +31,5 @@ if __name__ == "__main__":
     #response = openai.FineTune.retrieve(id = "ft-dztm8zdbNrTPv7IblMl5Ilks")
     #print(response)
 
-    result = gpt3_answer(item = 'is sastra good?', fine_tuned_model = "babbage:ft-personal-2022-06-06-17-26-20")
+    result = gpt3_answer(item = 'how is research at sastra?', fine_tuned_model = "babbage:ft-personal-2022-06-06-17-26-20")
     print(result)
